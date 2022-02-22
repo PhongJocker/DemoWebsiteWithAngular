@@ -1,0 +1,219 @@
+.title {
+    display: flex;
+    width: 100%;
+    height: 15%;
+    font-size: 25px;
+    align-items: center;
+}
+
+.input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 15px;
+}
+
+#popup-title {
+    width: fit-content;
+    height: fit-content;
+    padding: 15px;
+    font-size: 25px;
+    font-weight: 100;
+}
+
+.input-box-left {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 10px;
+}
+
+.input-box-right {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 10px;
+}
+
+.dropdown {
+    width: 99%;
+    padding: 8px;
+    font-size: 12px;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 5px;
+}
+
+#stt {
+    width: 20%;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.stt {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 5px;
+}
+
+.note {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 5px;
+}
+
+.body-container {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+.popup-body {
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+input {
+    width: 98%;
+    height: fit-content;
+    border: 1px solid #00000026;
+}
+
+.checkbox-box {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.checkbox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 5px;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.descript {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+textarea {
+    width: 99%;
+    height: 35px;
+    padding: 5px 10px;
+    font-size: 12px;
+    border: 1px solid #0000001c;
+}
+
+.footer {
+    margin: 10px;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row;
+    font-size: 12px;
+}
+
+.footer-container {
+    width: 100%;
+}
+
+button.btn-cancel {
+    padding: 5px 10px;
+    border: 1px solid #80808042;
+    background-color: white;
+}
+
+button.btn-save {
+    padding: 5px 10px;
+    color: white;
+    background-color: #282038f5;
+}
+
+
+.custom-radio {
+    width: 15px;
+    height: 15px;
+}
+
+input[type="radio"] {
+    appearance: none;
+    box-sizing: border-box;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 100%;
+    height: 100%;
+    border: 2px solid;
+    border-radius: 100px;
+    border-color: green;
+}
+
+input[type="radio"]::after {
+    content: "";
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    left: 8%;
+    top: -24%;
+    width: 43%;
+    height: 76%;
+    border-color: white;
+    border-width: 0 2px 2px 0;
+    border-style: solid;
+    transform-origin: bottom left;
+    transform: rotate(45deg)
+}
+
+input[type="radio"]:checked {
+	background-color: green;
+}
+
+#popup-container {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #09090954;
+}
+
+.popup {
+    width: 370px;
+    height: fit-content;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    margin: 3% calc(50% - 185px);
+}
+
+#popup-container:target {
+    display: block;
+}

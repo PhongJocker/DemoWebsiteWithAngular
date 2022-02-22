@@ -1,0 +1,69 @@
+<div id="popup-container">
+    <div class="popup">
+        <div class="title">
+            <span id="popup-title">Thêm mới bộ phận</span>
+        </div>
+
+        <div class="body-container">
+            <div class="popup-body">
+                <div class="input-container">
+                    <div class="input-box-left">
+                        <span>Mã</span>
+                        <input class="id-box" type="text" name="id">
+                        <div class="checkbox">
+                            <div class="custom-radio">
+                                <input id="radio" type="radio" value="chinhanh" name="checkform">
+                            </div>
+                            <span for="chinhanh">Chi nhánh</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-box-right">
+                        <span>Tên</span>
+                        <input class="name-box" type="text" name="name">
+                        <div class="checkbox">
+                            <div class="custom-radio">
+                                <input id="radio" type="radio" name="checkform" value="bophan" checked="checked">
+                            </div>
+                            <span for="bophan">Bộ phận</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="button-container">
+                    <span>Thuộc chi nhánh / Bộ phận cha</span>
+    
+                    <input class="dropdown" list="dropdown-menu" placeholder="Chi nhánh / bộ phận cha">
+                    <datalist id="dropdown-menu">
+                        <option value="Chi nhánh">
+                        <option value="Bộ phận cha">
+                    </datalist>
+                </div>
+    
+                <div class="descript">
+                    <span>Mô tả chức năng - nhiệm vụ</span>
+                    <textarea name="desc" placeholder="Mô tả chung..."></textarea>
+                </div>
+    
+                <div class="note">
+                    <span>Ghi chú</span>
+                    <textarea name="note"></textarea>
+                </div>
+    
+                <div class="stt">
+                    <span>Số thứ tự</span>
+                    <input type="text" name="sothutu" id="stt" placeholder="2">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-container">
+            <div class="footer">
+                <a href="#">
+                    <button class="btn-cancel"><i class="bi bi-record-circle"></i> Đóng</button>
+                </a>
+                <button class="btn-save"><i class="bi bi-file-earmark-check"></i> Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
