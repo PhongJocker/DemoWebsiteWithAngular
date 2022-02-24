@@ -54,7 +54,7 @@
 .button-container::after {
     content: "▼";
     margin-left: -20px;
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: 12px;
     color: rgb(197, 197, 197);
     position: absolute;
@@ -132,6 +132,8 @@ input {
 
 textarea {
     width: 100%;
+    min-height: 30px;
+    max-height: 80px;
     padding: 5px 10px;
     font-size: 12px;
 }
@@ -223,7 +225,7 @@ input[type="radio"]:checked {
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
-    margin: 3% calc(50% - 185px);
+    margin: 2% calc(50% - 185px);
 }
 
 #popup-container:target {
@@ -232,10 +234,13 @@ input[type="radio"]:checked {
 
 select, input, textarea {
     border-radius: 3px;
-    color: rgb(109, 108, 108);
     border: 1px solid #0000001c;
 }
 
+::placeholder {
+    color: rgb(109, 108, 108);
+}
+
 .name-box, .id-box {
-    padding: 8px 5px;
+    padding: 6px 5px;
 }
