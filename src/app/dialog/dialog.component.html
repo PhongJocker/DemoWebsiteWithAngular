@@ -33,11 +33,11 @@
                 <div class="button-container">
                     <span>Thuộc chi nhánh / Bộ phận cha</span>
     
-                    <input class="dropdown" list="dropdown-menu" placeholder="Chi nhánh / bộ phận cha">
-                    <datalist id="dropdown-menu">
-                        <option value="Chi nhánh">
-                        <option value="Bộ phận cha">
-                    </datalist>
+                    <select id="dropdown-menu">
+                        <option hidden="">Chi nhánh / bộ phận cha</option>
+                        <option value="ChiNhanh">Chi nhánh</option>
+                        <option value="BoPhanCha">Bộ phận cha</option>
+                    </select>
                 </div>
     
                 <div class="descript">
@@ -52,7 +52,7 @@
     
                 <div class="stt">
                     <span>Số thứ tự</span>
-                    <input type="text" name="sothutu" id="stt" placeholder="2">
+                    <input type="number" name="sothutu" id="stt" value="2">
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
         <div class="footer-container">
             <div class="footer">
                 <a href="#">
-                    <button class="btn-cancel"><i class="bi bi-record-circle"></i> Đóng</button>
+                    <button class="btn-cancel"><i class="bi bi-x-circle"></i> Đóng</button>
                 </a>
                 <button class="btn-save"><i class="bi bi-file-earmark-check"></i> Lưu</button>
             </div>

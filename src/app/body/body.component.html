@@ -4,7 +4,7 @@
             <input type="checkbox" name="checker" id="checker" style="width: 21%; height: 25px;">
             <div id="left-expand" class="expand">
                 <h6 id="title" style="color: darkmagenta; text-align: left;">{{ item.title }}</h6>
-                <i class="bi bi-chevron-up" style="float: right;"></i>
+                <i class="bi bi-chevron-down" style="float: right;"></i>
             </div>
             <div id="left-list" class="list">
                 <div class="left-child">
@@ -24,10 +24,12 @@
                     <i class="bi bi-arrow-repeat" style="color: blue;"></i>
                     <span class="btn-content refresh">Refresh</span>
                 </button>
-                    <button type="button" class="btn btn-light">
-                        <i class="bi bi-plus-lg" style="color: green;"></i>
+                <a href="#popup-container">
+                    <button type="button" id="button" class="btn btn-light">
+                        <i class="bi bi-plus" style="color: green;"></i>
                         <span class="btn-content add">Thêm mới</span>
                     </button>
+                </a>
             </div>
 
             <div class="btn-group mr-1" role="group" aria-label="Second group">
@@ -58,7 +60,7 @@
                     <div class="expand">
                         <div class="col" style="display: flex; flex-direction: row; column-gap: 5px;">
                             <i class="bi bi-chevron-up" *ngIf="item.child.length > 0"></i>
-                            <i class="bi bi-diagram-3-fill" style="color: blue;" *ngIf="item.id != 'Mã'"></i>
+                            <i class="bi bi-diagram-3-fill" style="color: rgb(6, 130, 247);" *ngIf="item.id != 'Mã'"></i>
                             <span>{{ item.name }}</span>
                         </div>
                         <div class="col">
@@ -67,10 +69,10 @@
                         <div class="col">
                             <span>{{ item.description }}</span>
                         </div>
-                        <div id="col" class="col">
+                        <div id="col" class="col" style="padding-right: 4px; display: flex; flex-direction: row; align-items: center; justify-content: flex-end;">
                             <a href="#popup-container">
                                 <button id="add">
-                                    <i class="bi bi-plus-lg"></i>
+                                    <i class="bi bi-plus"></i>
                                 </button>
                             </a>
                             <button id="edit" *ngIf="item.id != 'Mã'">

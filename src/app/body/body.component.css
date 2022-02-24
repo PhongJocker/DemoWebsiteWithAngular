@@ -96,7 +96,8 @@ button.btn {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 0 10px;
+    padding: 10px;
+    padding-right: 0;
 }
 
 
@@ -110,9 +111,18 @@ button.btn {
     opacity: 0;
     width: 25%;
     height: 5%;
-    position: absolute;
     z-index: 1;
+    position: absolute;
     cursor: pointer;
+}
+
+.bi-plus::before {
+    font-size: 20px;
+    height: 20px;
+}
+
+#button > .bi-plus::before {
+    margin-right: -5px;
 }
 
 #checker:checked ~ .list {
@@ -163,12 +173,17 @@ button {
 }
 
 #add, #edit, #remove {
-    font-size: 15px;
-    padding: 2px;
+    font-size: 12px;
+    font-weight: 900;
+    padding: 0;
+    padding-left: 5px;
+    align-items: center;
 }
 
 #add {
     color: blue;
+    font-size: 20px;
+    margin-right: -3px;
 }
 
 #edit {
@@ -179,7 +194,7 @@ button {
     color: red;
 }
 
-#checker:checked + div > .col > .bi-chevron-up, #checker:checked + #left-expand > .bi-chevron-up {
+#checker:checked + div > .col > .bi-chevron-up, #checker:checked + #left-expand > .bi-chevron-down {
     transform: rotate(180deg);
 }
 
