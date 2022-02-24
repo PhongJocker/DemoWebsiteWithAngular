@@ -236,3 +236,7 @@ button {
 .expand:hover + #toolTip {
     display: inline-flex;
 }
+
+#link {
+    text-decoration: none;
+}
