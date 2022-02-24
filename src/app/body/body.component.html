@@ -1,89 +1,20 @@
 <div id="middle-parent">
     <div id="middle-left">
-        <ul>
-            <li>
-                <div id="left-expand" class="expand">
-                    <h6 id="title" style="color: darkmagenta; text-align: left;">Thiết lập chung</h6>
-                    <i class="bi bi-caret-down" style="float: right;"></i>
+        <div *ngFor="let item of leftdata">
+            <input type="checkbox" name="checker" id="checker" style="width: 21%; height: 25px;">
+            <div id="left-expand" class="expand">
+                <h6 id="title" style="color: darkmagenta; text-align: left;">{{ item.title }}</h6>
+                <i class="bi bi-chevron-up" style="float: right;"></i>
+            </div>
+            <div id="left-list" class="list">
+                <div class="left-child">
+                    <div *ngFor="let itemChild of item.child" >
+                        <span id="content" [innerHtml]="itemChild.ic" [style.color]="itemChild.color" [style.margin-right.px]="5"></span>
+                        <span id="content">{{ itemChild.name }}</span>
+                    </div>
                 </div>
-                <input type="checkbox" name="checker" id="checker" style="width: 21%; height: 25px; margin-top: -30px;">
-                <ul id="left-list" class="list">
-                    <li>
-                        <div class="left-child">
-                            <p id="content"><i class="bi bi-file-text" style="color: #159FB9;"></i> Thông tin công ty</p>
-                            <p id="content"><i class="bi bi-currency-dollar" style="color: red;"></i> Tình trạng hợp đồng</p>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <div id="left-expand" class="expand">
-                    <h6 id="title" style="color: darkmagenta; text-align: left;">Quản trị hệ thống</h6>
-                    <i class="bi bi-caret-down" style="float: right;"></i>
-                </div>
-                <input type="checkbox" name="checker" id="checker" style="width: 21%; height: 25px; margin-top: -30px;">
-                <ul id="left-list" class="list">
-                    <li>
-                        <div class="left-child">
-                            <p id="content"><i class="bi bi-person-fill" style="color: green;"></i> Nhân sự</p>
-                            <p id="content"><i class="bi bi-people-fill" style="color: #FBC211;"></i> Vai trò</p>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <div id="left-expand" class="expand">
-                    <h6 id="title" style="color: darkmagenta; text-align: left;">Thiết lập dữ liệu bắt buộc</h6>
-                    <i class="bi bi-caret-down" style="float: right;"></i>
-                </div>
-                <input type="checkbox" name="checker" id="checker" style="width: 21%; height: 25px; margin-top: -30px;">
-                <ul id="left-list" class="list">
-                    <li>
-                        <div class="left-child">
-                            <p id="content"><i class="bi bi-diagram-3-fill" style="color: #159FB9;"></i> Cơ cấu tổ chức</p>
-                            <p id="content"><i class="bi bi-geo-fill" style="color: #27A341;"></i> Cơ cấu chức danh</p>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <div id="left-expand" class="expand">
-                    <h6 id="title" style="color: darkmagenta; text-align: left;">Thiết lập cho hệ thống cơ cấu tổ chức</h6>
-                    <i class="bi bi-caret-down" style="float: right;"></i>
-                </div>
-                <input type="checkbox" name="checker" id="checker" style="width: 21%; height: 25px; margin-top: -30px;">
-                <ul id="left-list" class="list">
-                    <li>
-                        <div class="left-child">
-                            <p id="content"><i class="bi bi-file-earmark-text"></i> Biểu mẫu bảng MTCV</p>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <div id="left-expand" class="expand">
-                    <h6 id="title" style="color: darkmagenta; text-align: left;">Thiết lập cho hệ thống đánh giá N.Lực</h6>
-                    <i class="bi bi-caret-down" style="float: right;"></i>
-                </div>
-                <input type="checkbox" name="checker" id="checker" style="width: 21%; height: 25px; margin-top: -30px;">
-                <ul id="left-list" class="list">
-                    <li>
-                        <div class="left-child">
-                            <p id="content"><i class="bi bi-gear-wide-connected" style="color: #159FB9;"></i> Cấu hình công ty</p>
-                            <p id="content"><i class="bi bi-envelope-fill" style="color: #159FB9;"></i> Biểu mẫu Email</p>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
     
     <div class="middle-right">
@@ -116,289 +47,46 @@
         </div>
         
         <div class="middle-right-bottom">
-            <ul class="top-tree">
-                <li>
+            <div id="loopRecursion">
+                <ng-container *ngTemplateOutlet="Recursion; context:{ list: rightdata}"></ng-container>
+            </div>
+            
+            <ng-template #Recursion let-list="list">
+                <div *ngFor="let item of list">
+                    
+                    <input type="checkbox" name="checker" id="checker" *ngIf="item.child.length > 0">
                     <div class="expand">
-                        <div class="col">
-                            <i class="bi bi-caret-down"></i>
-                            Hệ thống tư vấn quản lý trực tuyến OOC
+                        <div class="col" style="display: flex; flex-direction: row; column-gap: 5px;">
+                            <i class="bi bi-chevron-up" *ngIf="item.child.length > 0"></i>
+                            <i class="bi bi-diagram-3-fill" style="color: blue;" *ngIf="item.id != 'Mã'"></i>
+                            <span>{{ item.name }}</span>
                         </div>
-
-                        <div class="col">Mã</div>
-                        <div class="col">Mô tả chức năng - nhiệm vụ</div>
+                        <div class="col">
+                            <span>{{ item.id }}</span>
+                        </div>
+                        <div class="col">
+                            <span>{{ item.description }}</span>
+                        </div>
                         <div id="col" class="col">
                             <a href="#popup-container">
                                 <button id="add">
                                     <i class="bi bi-plus-lg"></i>
                                 </button>
                             </a>
+                            <button id="edit" *ngIf="item.id != 'Mã'">
+                                <i class="bi bi-pencil-fill"></i>
+                            </button>
+                            <button id="remove" *ngIf="item.id != 'Mã'">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
                         </div>
-                      </div>
-                      
-                    <input type="checkbox" name="checker" id="checker">
+                    </div>
                     
-                    <ul class="list">
-                        <li>
-                            <div class="expand">
-                                <div class="col">
-                                    <i class="bi bi-caret-down"></i>
-                                    <i class="bi bi-diagram-3-fill" style="color: blue;"></i>
-                                    Giám đốc
-                                </div>
-    
-                                <div class="col">BGD-1</div>
-                                <div class="col">Điều hành hoạt động doanh nghiệp. Trực tiếp phụ trách doanh nghiệp</div>
-                                <div id="col" class="col">
-                                    <a href="#popup-container">
-                                        <button id="add">
-                                            <i class="bi bi-plus-lg"></i>
-                                        </button>
-                                    </a>
-                                    <button id="edit">
-                                        <i class="bi bi-pencil-fill"></i>
-                                    </button>
-                                    <button id="remove">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </button>
-                                </div>
-                              </div>
-                              
-                            <input type="checkbox" name="checker" id="checker">
-                            
-                            <ul class="list">
-                                <li>
-                                    <div class="expand">
-                                        <div class="col">
-                                            <i class="bi bi-caret-down"></i>
-                                            <i class="bi bi-diagram-3-fill" style="color: blue;"></i>
-                                            Phó giám đốc phụ trách kinh doanh
-                                        </div>
-            
-                                        <div class="col">BGD-2</div>
-                                        <div class="col">Điều hành khối kinh doanh</div>
-                                        <div id="col" class="col">
-                                            <a href="#popup-container">
-                                                <button id="add">
-                                                  <i class="bi bi-plus-lg"></i>
-                                                </button>
-                                            </a>
-                                            <button id="edit">
-                                                <i class="bi bi-pencil-fill"></i>
-                                            </button>
-                                            <button id="remove">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </button>
-                                        </div>
-                                      </div>
-
-                                    <input type="checkbox" name="checker" id="checker">
-                                    
-                                    <ul class="list">
-                                        <li>
-                                            <div class="child">
-                                                <div class="col">
-                                                    <i class="bi bi-diagram-3-fill" style="color: blue;"></i>
-                                                    Phòng phát triển thị trường
-                                                </div>
-                    
-                                                <div class="col">PPTTT</div>
-                                                <div class="col">Marketing, chính sách giá cước, xúc tiến thương mại điện tử</div>
-                                                <div id="col" class="col">
-                                                    <a href="#popup-container">
-                                                        <button id="add">
-                                                          <i class="bi bi-plus-lg"></i>
-                                                        </button>
-                                                    </a>
-                                                    <button id="edit">
-                                                        <i class="bi bi-pencil-fill"></i>
-                                                    </button>
-                                                    <button id="remove">
-                                                        <i class="bi bi-trash-fill"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="child">
-                                                <div class="col">
-                                                    <i class="bi bi-diagram-3-fill" style="color: blue;"></i>
-                                                    Phòng kinh doanh
-                                                </div>
-                    
-                                                <div class="col">KD</div>
-                                                <div class="col">Mô tả chung ...</div>
-                                                <div id="col" class="col">
-                                                    <a href="#popup-container">
-                                                        <button id="add">
-                                                          <i class="bi bi-plus-lg"></i>
-                                                        </button>
-                                                    </a>
-                                                    <button id="edit">
-                                                        <i class="bi bi-pencil-fill"></i>
-                                                    </button>
-                                                    <button id="remove">
-                                                        <i class="bi bi-trash-fill"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <div class="child">
-                                        <div class="col">
-                                            <i class="bi bi-diagram-3-fill" style="color: blue;"></i>
-                                            Phòng tài chính kế toán
-                                        </div>
-            
-                                        <div class="col">TCKT</div>
-                                        <div class="col">Quản trị tài chính DN & đầu tư tài chính công tác kế toán</div>
-                                        <div id="col" class="col">
-                                            <a href="#popup-container">
-                                                <button id="add">
-                                                  <i class="bi bi-plus-lg"></i>
-                                                </button>
-                                            </a>
-                                            <button id="edit">
-                                                <i class="bi bi-pencil-fill"></i>
-                                            </button>
-                                            <button id="remove">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
-                                
-                                <li>
-                                    <div class="child">
-                                        <div class="col">
-                                            <i class="bi bi-diagram-3-fill" style="color: blue;"></i>
-                                            Phòng quản trị nguồn nhân lực
-                                        </div>
-            
-                                        <div class="col">QTNNL</div>
-                                        <div class="col">Xây dựng hệ thống & các chính sách nhân sự thực hiện</div>
-                                        <div id="col" class="col">
-                                            <a href="#popup-container">
-                                                <button id="add">
-                                                  <i class="bi bi-plus-lg"></i>
-                                                </button>
-                                            </a>
-                                            <button id="edit">
-                                                <i class="bi bi-pencil-fill"></i>
-                                            </button>
-                                            <button id="remove">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="child">
-                                        <div class="col">
-                                            <i class="bi bi-diagram-3-fill" style="color: blue;"></i>
-                                            Phòng marketing
-                                        </div>
-            
-                                        <div class="col">MK</div>
-                                        <div class="col">Mô tả chung ...</div>
-                                        <div id="col" class="col">
-                                            <a href="#popup-container">
-                                                <button id="add">
-                                                  <i class="bi bi-plus-lg"></i>
-                                                </button>
-                                            </a>
-                                            <button id="edit">
-                                                <i class="bi bi-pencil-fill"></i>
-                                            </button>
-                                            <button id="remove">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="child">
-                                        <div class="col">
-                                            <i class="bi bi-diagram-3-fill" style="color: blue;"></i>
-                                            Phòng R&D
-                                        </div>
-            
-                                        <div class="col">RD</div>
-                                        <div class="col">Mô tả chung ...</div>
-                                        <div id="col" class="col">
-                                            <a href="#popup-container">
-                                                <button id="add">
-                                                  <i class="bi bi-plus-lg"></i>
-                                                </button>
-                                            </a>
-                                            <button id="edit">
-                                                <i class="bi bi-pencil-fill"></i>
-                                            </button>
-                                            <button id="remove">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="child">
-                                        <div class="col">
-                                            <i class="bi bi-diagram-3-fill" style="color: blue;"></i>
-                                            Phòng hành chính tổng hợp
-                                        </div>
-            
-                                        <div class="col">HC</div>
-                                        <div class="col">Mô tả chung ...</div>
-                                        <div id="col" class="col">
-                                            <a href="#popup-container">
-                                                <button id="add">
-                                                  <i class="bi bi-plus-lg"></i>
-                                                </button>
-                                            </a>
-                                            <button id="edit">
-                                                <i class="bi bi-pencil-fill"></i>
-                                            </button>
-                                            <button id="remove">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="child">
-                                        <div class="col">
-                                            <i class="bi bi-diagram-3-fill" style="color: blue;"></i>
-                                            Phòng kỹ thuật
-                                        </div>
-            
-                                        <div class="col">BGD-1-7</div>
-                                        <div class="col">Mô tả chung ...</div>
-                                        <div id="col" class="col">
-                                            <a href="#popup-container">
-                                                <button id="add">
-                                                  <i class="bi bi-plus-lg"></i>
-                                                </button>
-                                            </a>
-                                            <button id="edit">
-                                                <i class="bi bi-pencil-fill"></i>
-                                            </button>
-                                            <button id="remove">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                    <div *ngIf="item.child.length > 0" class="list">
+                        <ng-container *ngTemplateOutlet="Recursion; context:{ list: item.child }"></ng-container>
+                    </div>                    
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>
