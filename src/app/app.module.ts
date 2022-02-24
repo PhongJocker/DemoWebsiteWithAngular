@@ -11,7 +11,7 @@ import { DialogComponent } from './dialog/dialog.component';
     AppComponent,
     HeaderComponent,
     BodyComponent,
-    DialogComponent
+    DialogComponent,
   ],
   imports: [
     BrowserModule
