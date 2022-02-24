@@ -54,7 +54,7 @@ button.btn {
 
 #middle-left {
     width: 28%;
-    padding-top: 17px;
+    padding-top: 10px;
 }
 
 #title {
@@ -103,14 +103,15 @@ button.btn {
 .list {
     margin-left: 20px;
     display: none;
+    list-style: none;
 }
 
 #checker {
     opacity: 0;
     width: 25%;
-    height: 10%;
-    margin-top: -35px;
+    height: 5%;
     position: absolute;
+    z-index: 1;
     cursor: pointer;
 }
 
@@ -132,7 +133,7 @@ ul, li {
     grid-template-columns: auto 20px;
     width: 100%; 
     height: fit-content;
-    margin-bottom: 5px;
+    margin: 6px 0;
     background-color: inherit;
 }
 
@@ -178,8 +179,8 @@ button {
     color: red;
 }
 
-.bi-caret-down {
-    margin-right: 5px;
+#checker:checked + div > .col > .bi-chevron-up, #checker:checked + #left-expand > .bi-chevron-up {
+    transform: rotate(180deg);
 }
 
 .child:hover, .expand:hover {
