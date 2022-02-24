@@ -1,7 +1,7 @@
 <div id="middle-parent">
     <div id="middle-left">
         <div *ngFor="let item of leftdata">
-            <input type="checkbox" name="checker" id="checker" style="width: 21%; height: 25px;">
+            <input type="checkbox" name="checker" checked="checked" id="checker" style="width: 21%; height: 25px;">
             <div id="left-expand" class="expand">
                 <h6 id="title" style="color: darkmagenta; text-align: left;">{{ item.title }}</h6>
                 <i class="bi bi-chevron-down" style="float: right;"></i>
@@ -55,8 +55,7 @@
             
             <ng-template #Recursion let-list="list">
                 <div *ngFor="let item of list">
-                    
-                    <input type="checkbox" name="checker" id="checker" *ngIf="item.child.length > 0">
+                    <input type="checkbox" name="checker" checked="checked" id="checker" *ngIf="item.child.length > 0">
                     <div class="expand">
                         <div class="col" style="display: flex; flex-direction: row; column-gap: 5px;">
                             <i class="bi bi-chevron-up" *ngIf="item.child.length > 0"></i>
@@ -83,6 +82,7 @@
                             </button>
                         </div>
                     </div>
+                    <div id="toolTip">{{ item.name }}</div>
                     
                     <div *ngIf="item.child.length > 0" class="list">
                         <ng-container *ngTemplateOutlet="Recursion; context:{ list: item.child }"></ng-container>
