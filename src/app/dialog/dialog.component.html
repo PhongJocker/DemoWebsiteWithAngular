@@ -9,7 +9,7 @@
                 <div class="input-container">
                     <div class="input-box-left">
                         <span>Mã</span>
-                        <input class="id-box" type="text" name="id" [value]="this.dataService.edit? this.treeView.rightdata[this.dataService.index].id : ''" #ma>
+                        <input class="id-box" type="text" name="id" [value]="this.dataService.edit? this.dataService.temp[this.dataService.index].id : ''" #ma>
                         <div class="checkbox">
                             <div class="custom-radio">
                                 <input id="radio" type="radio" value="chinhanh" name="checkform" class="radioLeft">
@@ -20,7 +20,7 @@
                     
                     <div class="input-box-right">
                         <span>Tên</span>
-                        <input class="name-box" type="text" name="name" [value]="this.dataService.edit? this.treeView.rightdata[this.dataService.index].name : ''" #ten>
+                        <input class="name-box" type="text" name="name" [value]="this.dataService.edit? this.dataService.temp[this.dataService.index].name : ''" #ten>
                         <div class="checkbox">
                             <div class="custom-radio">
                                 <input id="radio" type="radio" name="checkform" value="bophan" checked="checked" class="radioRight">
@@ -42,17 +42,17 @@
     
                 <div class="descript">
                     <span>Mô tả chức năng - nhiệm vụ</span>
-                    <textarea name="desc" rows="2" placeholder="Mô tả chung..." [value]="this.dataService.edit? this.treeView.rightdata[this.dataService.index].description : ''" #mota></textarea>
+                    <textarea name="desc" rows="2" placeholder="Mô tả chung..." [value]="this.dataService.edit? this.dataService.temp[this.dataService.index].description : ''" #mota></textarea>
                 </div>
     
                 <div class="note">
                     <span>Ghi chú</span>
-                    <textarea name="note" [value]="this.dataService.edit? this.treeView.rightdata[this.dataService.index].note : ''" #note></textarea>
+                    <textarea name="note" [value]="this.dataService.edit? this.dataService.temp[this.dataService.index].note : ''" #note></textarea>
                 </div>
     
                 <div class="stt">
                     <span>Số thứ tự</span>
-                    <input type="number" name="sothutu" id="stt" min="1" [value]="this.dataService.edit? this.treeView.rightdata[this.dataService.index].serial : '1'" #serial>
+                    <input type="number" name="sothutu" id="stt" min="1" [value]="this.dataService.edit? this.dataService.temp[this.dataService.index].serial : '1'" #serial>
                 </div>
             </div>
         </div>
