@@ -24,12 +24,10 @@
                     <i class="bi bi-arrow-repeat" style="color: blue;"></i>
                     <span class="btn-content refresh">Refresh</span>
                 </button>
-                <a id="link" href="#popup-container">
-                    <button type="button" id="button" class="btn btn-light">
-                        <i class="bi bi-plus" style="color: green;"></i>
-                        <span class="btn-content add">Thêm mới</span>
-                    </button>
-                </a>
+                <button type="button" id="button" class="btn btn-light" (click)="this.dataService.showAddForm = true; this.dataService.addRoot = true; this.dataService.temp = this.dataService.parent">
+                    <i class="bi bi-plus" style="color: green;"></i>
+                    <span class="btn-content add">Thêm mới</span>
+                </button>
             </div>
 
             <div class="btn-group mr-1" role="group" aria-label="Second group">
@@ -49,46 +47,7 @@
         </div>
         
         <div class="middle-right-bottom">
-            <div id="loopRecursion">
-                <ng-container *ngTemplateOutlet="Recursion; context:{ list: rightdata}"></ng-container>
-            </div>
-            
-            <ng-template #Recursion let-list="list">
-                <div *ngFor="let item of list">
-                    <input type="checkbox" name="checker" checked="checked" id="checker" *ngIf="item.child.length > 0">
-                    <div class="expand">
-                        <div class="col" style="display: flex; flex-direction: row; column-gap: 5px;">
-                            <i class="bi bi-chevron-up" *ngIf="item.child.length > 0"></i>
-                            <i class="bi bi-diagram-3-fill" style="color: rgb(6, 130, 247);" *ngIf="item.id != 'Mã'"></i>
-                            <span>{{ item.name }}</span>
-                        </div>
-                        <div class="col">
-                            <span>{{ item.id }}</span>
-                        </div>
-                        <div class="col">
-                            <span>{{ item.description }}</span>
-                        </div>
-                        <div id="col" class="col" style="padding-right: 4px; display: flex; flex-direction: row; align-items: center; justify-content: flex-end;">
-                            <a id="link" href="#popup-container">
-                                <button id="add">
-                                    <i class="bi bi-plus"></i>
-                                </button>
-                            </a>
-                            <button id="edit" *ngIf="item.id != 'Mã'">
-                                <i class="bi bi-pencil-fill"></i>
-                            </button>
-                            <button id="remove" *ngIf="item.id != 'Mã'">
-                                <i class="bi bi-trash-fill"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div id="toolTip">{{ item.name }}</div>
-                    
-                    <div *ngIf="item.child.length > 0" class="list">
-                        <ng-container *ngTemplateOutlet="Recursion; context:{ list: item.child }"></ng-container>
-                    </div>                    
-                </div>
-            </ng-template>
+            <app-tree-view></app-tree-view>
         </div>
     </div>
 </div>
