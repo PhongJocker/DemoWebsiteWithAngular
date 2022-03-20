@@ -1,0 +1,133 @@
+.expand, .child {
+    display: grid;
+    align-items: center;
+    justify-items: start;
+    grid-template-columns: auto 90px 300px 82px;
+    background-color: #E5E5F1;
+    margin-bottom: 5px;
+    height: 30px;
+    font-size: 14px;
+}
+
+.col {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 10px;
+    padding-right: 0;
+}
+
+.list {
+    margin-left: 20px;
+    display: none;
+    list-style: none;
+}
+
+#checker {
+    opacity: 0;
+    width: 25%;
+    height: 5%;
+    z-index: 1;
+    position: absolute;
+    cursor: pointer;
+}
+
+.bi-plus::before {
+    font-size: 20px;
+    height: 20px;
+}
+
+#button > .bi-plus::before {
+    margin-right: -5px;
+}
+
+#checker:checked ~ .list {
+    display: list-item;
+}
+
+ul, li {
+    list-style: none;
+    margin-bottom: 7px;
+}
+
+#col {
+    text-align: right;
+}
+
+button {
+    border: none;
+}
+
+.col button {
+    background-color: #0000;
+}
+
+#add, #edit, #remove {
+    font-size: 12px;
+    font-weight: 900;
+    padding: 0;
+    padding-left: 5px;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+#add {
+    color: blue;
+    font-size: 20px;
+    margin-right: -3px;
+}
+
+#edit {
+    color: #FBC211;
+}
+
+#remove {
+    color: red;
+}
+
+#checker:checked + div > .col > .bi-chevron-up, #checker:checked + #left-expand > .bi-chevron-down {
+    transform: rotate(180deg);
+}
+
+.child:hover, .expand:hover {
+    background-color: #D1D3EC;
+}
+
+#toolTip {
+     display: none;
+     width: fit-content;
+     height: fit-content;
+     max-width: 220px;
+     margin-left: 15%;
+     margin-top: -70px;
+     padding: 5px 10px;
+     text-align: center;
+     position: absolute;
+     font-size: 12px;
+     background-color: #27333fd3;
+     border-radius: 3px;
+     color: white;
+}
+
+#toolTip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #27333fd3 transparent transparent transparent;
+}
+
+.expand:hover + #toolTip {
+    display: inline-flex;
+}
+
+#link {
+    text-decoration: none;
+}

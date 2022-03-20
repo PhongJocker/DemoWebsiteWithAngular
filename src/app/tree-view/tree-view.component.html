@@ -1,0 +1,32 @@
+<div *ngFor="let item of rightdata">
+    <input type="checkbox" name="checker" checked="checked" id="checker" *ngIf="item.child.length">
+    <div class="expand">
+        <div class="col" style="display: flex; flex-direction: row; column-gap: 5px;">
+            <i class="bi bi-chevron-up" *ngIf="item.child.length"></i>
+            <i class="bi bi-diagram-3-fill" style="color: rgb(6, 130, 247);" *ngIf="item.serial != '0'"></i>
+            <span>{{ item.name }}</span>
+        </div>
+        <div class="col">
+            <span>{{ item.id }}</span>
+        </div>
+        <div class="col">
+            <span>{{ item.description }}</span>
+        </div>
+        <div id="col" class="col" style="padding-right: 4px; display: flex; flex-direction: row; align-items: center; justify-content: flex-end;">
+            <button id="add" (click)="select(rightdata.indexOf(item)); this.dataService.showAddForm = true">
+                <i class="bi bi-plus"></i>
+            </button>
+            <div *ngIf="item.serial != '0'">
+                <button id="edit" (click)="select(rightdata.indexOf(item)); this.dataService.showAddForm = true; this.dataService.edit = true">  
+                    <i class="bi bi-pencil-fill"></i>
+                </button>
+                <button id="remove" (click)="select(rightdata.indexOf(item)); this.dataService.showRemoveConfirm = true">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="toolTip">{{ item.name }}</div>
+
+    <app-tree-view *ngIf="item.child.length" [rightdata]="item.child" class="list"></app-tree-view>
+</div>
