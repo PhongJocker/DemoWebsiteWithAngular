@@ -60,7 +60,7 @@
         <div class="footer-container">
             <div class="footer">
                 <button class="btn-cancel" (click)="this.dataService.showAddForm = false"><i class="bi bi-x-circle"></i> Đóng</button>
-                <button class="btn-save" (click)="save(ma.value = 'Mã', ten.value = 'Tên', mota.value = 'Mô tả', note.value = 'Ghi chú', serial.value = 'Số thứ tự')"><i class="bi bi-file-earmark-check"></i> Lưu</button>
+                <button class="btn-save" (click)="save(ma.value, ten.value, mota.value, note.value, serial.value)"><i class="bi bi-file-earmark-check"></i> Lưu</button>
             </div>
         </div>
     </div>
