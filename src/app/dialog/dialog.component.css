@@ -209,7 +209,6 @@ input[type="radio"]:checked {
 }
 
 #popup-container {
-    visibility: hidden;
     display: relative;
     position: fixed;
     width: 100%;
@@ -228,10 +227,6 @@ input[type="radio"]:checked {
     margin: 2% calc(50% - 185px);
 }
 
-#popup-container:target {
-    visibility: visible;
-}
-
 select, input, textarea {
     border-radius: 3px;
     border: 1px solid #0000001c;
@@ -243,4 +238,39 @@ select, input, textarea {
 
 .name-box, .id-box {
     padding: 6px 5px;
+}
+
+#removeConfirm {
+    height: 20%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: fixed;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 20px;
+}
+
+#actionGroup {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    justify-content: space-between;
+}
+
+#label {
+    font-size: 26px;
+}
+
+button {
+    border: none;
+}
+
+#confirm, #cancel {
+    padding: 5px 10px;
+}
+
+#confirm {
+    background-color: rgb(10, 252, 10);
 }
