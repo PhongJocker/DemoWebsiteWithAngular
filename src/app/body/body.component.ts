@@ -1,3 +1,4 @@
+import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -79,7 +80,7 @@ export class BodyComponent implements OnInit {
     },
   ]
 
-  constructor() { }
+  constructor(public dataService: DataService) { }
 
   ngOnInit(): void {
   }
