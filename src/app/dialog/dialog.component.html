@@ -1,4 +1,4 @@
-<div id="popup-container">
+<div id="popup-container" *ngIf="this.dataService.showAddForm">
     <div class="popup">
         <div class="title">
             <span id="popup-title">Thêm mới bộ phận</span>
@@ -9,7 +9,7 @@
                 <div class="input-container">
                     <div class="input-box-left">
                         <span>Mã</span>
-                        <input class="id-box" type="text" name="id">
+                        <input class="id-box" type="text" name="id" #ma>
                         <div class="checkbox">
                             <div class="custom-radio">
                                 <input id="radio" type="radio" value="chinhanh" name="checkform" class="radioLeft">
@@ -20,7 +20,7 @@
                     
                     <div class="input-box-right">
                         <span>Tên</span>
-                        <input class="name-box" type="text" name="name">
+                        <input class="name-box" type="text" name="name" #ten>
                         <div class="checkbox">
                             <div class="custom-radio">
                                 <input id="radio" type="radio" name="checkform" value="bophan" checked="checked" class="radioRight">
@@ -42,28 +42,35 @@
     
                 <div class="descript">
                     <span>Mô tả chức năng - nhiệm vụ</span>
-                    <textarea name="desc" rows="2" placeholder="Mô tả chung..."></textarea>
+                    <textarea name="desc" rows="2" placeholder="Mô tả chung..." #mota></textarea>
                 </div>
     
                 <div class="note">
                     <span>Ghi chú</span>
-                    <textarea name="note"></textarea>
+                    <textarea name="note" #note></textarea>
                 </div>
     
                 <div class="stt">
                     <span>Số thứ tự</span>
-                    <input type="number" name="sothutu" id="stt" value="2">
+                    <input type="number" name="sothutu" id="stt" min="1" value="1" #serial>
                 </div>
             </div>
         </div>
 
         <div class="footer-container">
             <div class="footer">
-                <a href="#">
-                    <button class="btn-cancel"><i class="bi bi-x-circle"></i> Đóng</button>
-                </a>
-                <button class="btn-save"><i class="bi bi-file-earmark-check"></i> Lưu</button>
+                <button class="btn-cancel" (click)="this.dataService.showAddForm = false"><i class="bi bi-x-circle"></i> Đóng</button>
+                <button class="btn-save" (click)="save(ma.value = 'Mã', ten.value = 'Tên', mota.value = 'Mô tả', note.value = 'Ghi chú', serial.value = 'Số thứ tự')"><i class="bi bi-file-earmark-check"></i> Lưu</button>
             </div>
+        </div>
+    </div>
+</div>
+<div id="popup-container" *ngIf="this.dataService.showRemoveConfirm">
+    <div id="removeConfirm" class="popup">
+        <span id="label">Xác nhận xóa?</span>
+        <div id="actionGroup">
+            <button id="confirm" (click)="remove()">Xác nhận</button>
+            <button id="cancel" (click)="this.dataService.showRemoveConfirm = false">Hủy</button>
         </div>
     </div>
 </div>
