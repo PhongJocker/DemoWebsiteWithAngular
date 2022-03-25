@@ -1,3 +1,4 @@
+import { DialogComponent } from '../dialog/dialog.component';
 import { DataService } from './../data.service';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -19,20 +20,35 @@ interface parentObject {
 export class TreeViewComponent implements OnInit {
   @Input() 
   rightdata: parentObject[] = this.dataService.parent;
-
+    
+ 
     constructor(public dataService: DataService) { }
     
     ngOnInit(): void {
     }
+    
+    getListData (data: parentObject[], selected: string[]) {
+      for (let i of data) {
+        this.dataService.listData.push(i.name);
+
+        if (selected.includes(i.name) == false) {
+          if (i.child.length > 0) {
+            this.getListData(i.child, selected);
+          }
+        }
+      }
+    }
 
     select(index: number) {
       this.dataService.index = index;
+      this.dataService.selectedName = this.rightdata[index].name;
       this.dataService.temp = this.rightdata;
       this.dataService.addRoot = false;
-    }
 
+      this.getListData(this.dataService.parent[0].child, this.rightdata.map(item => item.name));
+    }
+    
     add(data: parentObject) {
-      const child: parentObject[] = [];
       if (!this.dataService.addRoot) {
         this.rightdata[this.dataService.index].child.push(data);
       }
@@ -40,7 +56,7 @@ export class TreeViewComponent implements OnInit {
         this.rightdata[0].child.push(data)
       }
     }
-
+    
     edit(data: parentObject) {
       for (let key in data) {
         let value = data[key as keyof object];
@@ -48,11 +64,13 @@ export class TreeViewComponent implements OnInit {
           this.rightdata[this.dataService.index][key as keyof parentObject] = value;
         }
       }
+      this.dataService.listData = [];
     }
     
     remove(index: number) {
       this.dataService.showRemoveConfirm = false;
       this.rightdata.splice(index, 1);
+      this.dataService.listData = [];
     }
   }
   

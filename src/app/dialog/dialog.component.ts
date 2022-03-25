@@ -2,6 +2,15 @@ import { DataService } from './../data.service';
 import { TreeViewComponent } from '../tree-view/tree-view.component';
 import { Component, OnInit } from '@angular/core';
 
+interface parentObject {
+  id: string;
+  name: string;
+  note: string;
+  serial: string;
+  description: string;
+  child: parentObject[];
+}
+
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -15,6 +24,10 @@ export class DialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  refreshData () {
+    this.dataService.listData.splice(0, this.dataService.listData.length);
+  }
+  
   save(id: string, name: string, description: string, note: string, serial: string) {
     this.dataService.showAddForm = false;
     this.treeView.rightdata = this.dataService.temp;
