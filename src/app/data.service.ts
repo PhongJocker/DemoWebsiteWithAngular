@@ -14,7 +14,15 @@ interface parentObject {
 })
 
 export class DataService {
+  addRoot: boolean = false;
+  edit: boolean = false;
+
+  showAddForm: boolean = false;
+  showRemoveConfirm: boolean = false;
+  
   index: number;
+  selectedName: string;
+  temp: parentObject[];
   parent: parentObject[] = [
     {
       name: "Hệ thống tư vấn quản lý trực tuyến OOC",
@@ -105,10 +113,7 @@ export class DataService {
         }
       ]
     }];
-  addRoot: boolean = false;
-  showAddForm: boolean = false;
-  showRemoveConfirm: boolean = false;
-  temp: parentObject[];
-  edit = false;
+  listData: string[] = [];
+
   constructor() { }
 }
