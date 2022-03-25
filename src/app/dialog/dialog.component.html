@@ -35,8 +35,7 @@
     
                     <select id="dropdown-menu">
                         <option hidden="">Chi nhánh / bộ phận cha</option>
-                        <option value="ChiNhanh">Chi nhánh</option>
-                        <option value="BoPhanCha">Bộ phận cha</option>
+                        <option [value]="name" *ngFor="let name of this.dataService.listData">{{ name }}</option>
                     </select>
                 </div>
     
@@ -59,18 +58,18 @@
 
         <div class="footer-container">
             <div class="footer">
-                <button class="btn-cancel" (click)="this.dataService.showAddForm = false"><i class="bi bi-x-circle"></i> Đóng</button>
-                <button class="btn-save" (click)="save(ma.value, ten.value, mota.value, note.value, serial.value)"><i class="bi bi-file-earmark-check"></i> Lưu</button>
+                <button class="btn-cancel" (click)="this.dataService.showAddForm = false;  refreshData();"><i class="bi bi-x-circle"></i> Đóng</button>
+                <button class="btn-save" (click)="save(ma.value, ten.value, mota.value, note.value, serial.value);  refreshData();"><i class="bi bi-file-earmark-check"></i> Lưu</button>
             </div>
         </div>
     </div>
 </div>
 <div id="popup-container" *ngIf="this.dataService.showRemoveConfirm">
     <div id="removeConfirm" class="popup">
-        <span id="label">Xác nhận xóa?</span>
+        <span id="label">Bạn chắc chắn muốn xóa "<b>{{ this.dataService.selectedName }}</b>" ?</span>
         <div id="actionGroup">
-            <button id="confirm" (click)="remove()">Xác nhận</button>
-            <button id="cancel" (click)="this.dataService.showRemoveConfirm = false">Hủy</button>
+            <button id="confirm" (click)="remove(); refreshData();">Xác nhận</button>
+            <button id="cancel" (click)="this.dataService.showRemoveConfirm = false;  refreshData();">Hủy</button>
         </div>
     </div>
 </div>
