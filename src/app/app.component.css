@@ -7,10 +7,17 @@ body {
 }
 
 app-body {
+    margin-top: 45px;
     z-index: 1;
 }
 
 app-dialog {
+    position: fixed;
+    z-index: 2;
+}
+
+app-header {
+    width: 100%;
     position: fixed;
     z-index: 2;
 }
