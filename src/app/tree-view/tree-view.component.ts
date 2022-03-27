@@ -18,8 +18,8 @@ interface parentObject {
 })
 
 export class TreeViewComponent implements OnInit {
-  @Input() 
-  rightdata: parentObject[] = this.dataService.parent;
+  @Input() rightdata: parentObject[] = this.dataService.parent;
+  @Input() parentName: string;
     
  
     constructor(public dataService: DataService) { }
@@ -30,7 +30,7 @@ export class TreeViewComponent implements OnInit {
     getListData (data: parentObject[], selected: string[]) {
       for (let i of data) {
         this.dataService.listData.push(i.name);
-
+        
         if (selected.includes(i.name) == false) {
           if (i.child.length > 0) {
             this.getListData(i.child, selected);
@@ -39,12 +39,23 @@ export class TreeViewComponent implements OnInit {
       }
     }
 
+    showAddForm(boolean: boolean) {
+      this.dataService.showAddForm = true;
+      this.dataService.edit = boolean;
+
+      if (this.dataService.addRoot) {
+        this.getListData(this.dataService.parent[0].child, this.dataService.parent.map(item => item.name));
+      }
+    }
+
     select(index: number) {
       this.dataService.index = index;
       this.dataService.selectedName = this.rightdata[index].name;
+
       this.dataService.temp = this.rightdata;
       this.dataService.addRoot = false;
 
+      this.dataService.parentName = this.parentName;
       this.getListData(this.dataService.parent[0].child, this.rightdata.map(item => item.name));
     }
     

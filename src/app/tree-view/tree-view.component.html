@@ -13,11 +13,11 @@
             <span>{{ item.description }}</span>
         </div>
         <div id="col" class="col" style="padding-right: 4px; display: flex; flex-direction: row; align-items: center; justify-content: flex-end;">
-            <button id="add" (click)="select(rightdata.indexOf(item)); this.dataService.showAddForm = true">
+            <button id="add" (click)="select(rightdata.indexOf(item)); showAddForm(false);">
                 <i class="bi bi-plus"></i>
             </button>
             <div *ngIf="item.serial != '0'">
-                <button id="edit" (click)="select(rightdata.indexOf(item)); this.dataService.showAddForm = true; this.dataService.edit = true">  
+                <button id="edit" (click)="select(rightdata.indexOf(item)); showAddForm(true);">
                     <i class="bi bi-pencil-fill"></i>
                 </button>
                 <button id="remove" (click)="select(rightdata.indexOf(item)); this.dataService.showRemoveConfirm = true">
@@ -28,5 +28,5 @@
     </div>
     <div id="toolTip">{{ item.name }}</div>
 
-    <app-tree-view *ngIf="item.child.length" [rightdata]="item.child" class="list"></app-tree-view>
+    <app-tree-view *ngIf="item.child.length" [rightdata]="item.child" [parentName]="item.name" class="list"></app-tree-view>
 </div>
