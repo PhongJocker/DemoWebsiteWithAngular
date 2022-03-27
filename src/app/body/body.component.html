@@ -20,11 +20,11 @@
     <div class="middle-right">
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar witspan button groups">
             <div class="btn-group mr-1" role="group" aria-label="First group">
-                <button type="button" class="btn btn-light">
+                <button type="button" class="btn btn-light" (click)="refresh();">
                     <i class="bi bi-arrow-repeat" style="color: blue;"></i>
                     <span class="btn-content refresh">Refresh</span>
                 </button>
-                <button type="button" id="button" class="btn btn-light" (click)="this.dataService.showAddForm = true; this.dataService.addRoot = true; this.dataService.temp = this.dataService.parent">
+                <button type="button" id="button" class="btn btn-light" (click)="this.dataService.addRoot = true; this.treeView.showAddForm(false);">
                     <i class="bi bi-plus" style="color: green;"></i>
                     <span class="btn-content add">Thêm mới</span>
                 </button>

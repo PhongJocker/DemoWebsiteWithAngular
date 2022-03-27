@@ -1,5 +1,6 @@
 import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
+import { TreeViewComponent } from '../tree-view/tree-view.component';
 
 @Component({
   selector: 'app-body',
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./body.component.css']
 })
 export class BodyComponent implements OnInit {
+
+  public treeView = new TreeViewComponent(this.dataService);
+
   public leftdata = [
     {
       title: "Thiết lập chung",
@@ -79,6 +83,10 @@ export class BodyComponent implements OnInit {
       ]
     },
   ]
+
+  refresh() {
+    window.location.reload();
+  }
 
   constructor(public dataService: DataService) { }
 
