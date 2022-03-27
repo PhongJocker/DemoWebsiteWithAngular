@@ -22,6 +22,8 @@ export class DataService {
   
   index: number;
   selectedName: string;
+  parentName: string;
+
   temp: parentObject[];
   parent: parentObject[] = [
     {
