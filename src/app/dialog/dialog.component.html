@@ -35,7 +35,7 @@
     
                     <select id="dropdown-menu">
                         <option hidden="">Chi nhánh / bộ phận cha</option>
-                        <option [value]="name" *ngFor="let name of this.dataService.listData">{{ name }}</option>
+                        <option [value]="name" *ngFor="let name of this.dataService.listData" [selected]="name == this.dataService.parentName">{{ name }}</option>
                     </select>
                 </div>
     
@@ -51,7 +51,7 @@
     
                 <div class="stt">
                     <span>Số thứ tự</span>
-                    <input type="number" name="sothutu" id="stt" min="1" [value]="this.dataService.edit? this.dataService.temp[this.dataService.index].serial : '1'" #serial>
+                    <input type="number" name="sothutu" id="stt" min="0" [value]="this.dataService.edit? this.dataService.temp[this.dataService.index].serial : '1'" #serial>
                 </div>
             </div>
         </div>

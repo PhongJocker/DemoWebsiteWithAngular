@@ -27,7 +27,7 @@ export class DialogComponent implements OnInit {
   refreshData () {
     this.dataService.listData.splice(0, this.dataService.listData.length);
   }
-  
+
   save(id: string, name: string, description: string, note: string, serial: string) {
     this.dataService.showAddForm = false;
     this.treeView.rightdata = this.dataService.temp;
