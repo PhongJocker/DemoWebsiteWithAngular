@@ -4,6 +4,7 @@ interface parentObject {
   id: string;
   name: string;
   note: string;
+  radio: string;
   serial: string;
   description: string;
   child: parentObject[];
@@ -23,12 +24,14 @@ export class DataService {
   index: number;
   selectedName: string;
   parentName: string;
+  radio: string = 'bophan';
 
   temp: parentObject[];
   parent: parentObject[] = [
     {
       name: "Hệ thống tư vấn quản lý trực tuyến OOC",
       id: "Mã",
+      radio: "chinhanh",
       note: '',
       serial: "0",
       description: "Mô tả chức năng - nhiệm vụ",
@@ -36,6 +39,7 @@ export class DataService {
         {
           name: "Giám đốc",
           id: "BGD-1",
+          radio: "bophan",
           note: '',
           serial: "1",
           description: "Điều hành hoạt động doanh nghiệp. Trực tiếp phụ trách doanh nghiệp",
@@ -43,6 +47,7 @@ export class DataService {
             {
               name: "Phó giám đốc phụ trách kinh doanh",
               id: "BGD-2",
+              radio: "bophan",
               note: '',
               serial: "1",
               description: "Điều hành khối kinh doanh",
@@ -50,6 +55,7 @@ export class DataService {
                 {
                   name: "Phòng phát triển thị trường",
                   id: "PTTT",
+                  radio: "bophan",
                   note: '',
                   serial: "1",
                   description: "Marketing, chính sách giá cước, xúc tiền thương mại, quảng cáo, quản lý thương mại",
@@ -59,6 +65,7 @@ export class DataService {
                 {
                   name: "Phòng kinh doanh",
                   id: "KD",
+                  radio: "bophan",
                   note: '',
                   serial: "1",
                   description: "Mô tả chung...",
@@ -70,6 +77,7 @@ export class DataService {
             {
               name: "Phòng tài chính kế toán",
               id: "TCKT",
+              radio: "bophan",
               note: '',
               serial: "1",
               description: "Quản trị tài chính DN & đầu tư tài chính công tác kế toán",
@@ -79,6 +87,7 @@ export class DataService {
             {
               name: "Phòng quản trị nguồn nhân lực",
               id: "QTNNL",
+              radio: "bophan",
               note: '',
               serial: "1",
               description: "Xây dựng hệ thống & các chính sách nhân sự thực hiện",
@@ -88,6 +97,7 @@ export class DataService {
             {
               name: "Phòng R&D",
               id: "RD",
+              radio: "bophan",
               note: '',
               serial: "1",
               description: "Mô tả chung...",
@@ -97,6 +107,7 @@ export class DataService {
             {
               name: "Phòng hành chính tổng hợp",
               id: "HC",
+              radio: "bophan",
               note: '',
               serial: "1",
               description: "Mô tả chung...",
@@ -106,6 +117,7 @@ export class DataService {
             {
               name: "Phòng kỹ thuật",
               id: "BGD-1-7",
+              radio: "bophan",
               note: '',
               serial: "1",
               description: "Mô tả chung...",
