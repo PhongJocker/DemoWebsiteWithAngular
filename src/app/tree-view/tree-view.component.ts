@@ -44,9 +44,9 @@ export class TreeViewComponent implements OnInit {
       this.dataService.edit = edit;
 
       if (this.dataService.addRoot) {
-        this.getListData(this.dataService.parent[0].child, this.dataService.parent.map(item => item.name));
+        this.getListData(this.dataService.parent, this.dataService.parent.map(item => item.name));
       } else {
-        this.getListData(this.dataService.parent[0].child, this.rightdata.map(item => item.name));
+        this.getListData(this.dataService.parent, this.rightdata.map(item => item.name));
       }
     }
 

@@ -20,6 +20,7 @@ interface parentObject {
 export class DialogComponent implements OnInit {
 
   public treeView = new TreeViewComponent(this.dataService);
+
   constructor(public dataService: DataService) { }
   
   ngOnInit(): void {
@@ -34,7 +35,7 @@ export class DialogComponent implements OnInit {
       alert('Vui lòng không bỏ trống !');
       return;
     } else {
-      var data = {id: id, name: name, radio: radio, description: description, note: note, serial: serial, child: []};
+      var data: parentObject = {id: id, name: name, radio: radio, description: description, note: note, serial: serial, child: []};
       
       this.dataService.showAddForm = false;
       this.treeView.rightdata = this.dataService.temp;

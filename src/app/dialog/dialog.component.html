@@ -35,7 +35,7 @@
     
                     <select id="dropdown-menu">
                         <option hidden="">Chi nhánh / bộ phận cha</option>
-                        <option [value]="name" *ngFor="let name of this.dataService.listData" [selected]="name == this.dataService.parentName">{{ name }}</option>
+                        <option [value]="name" *ngFor="let name of this.dataService.listData" [selected]="name == this.dataService.selectedName">{{ name }}</option>
                     </select>
                 </div>
     
