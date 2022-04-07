@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -17,6 +18,7 @@ import { TreeViewComponent } from './tree-view/tree-view.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule
   ],
   providers: [
   ],
