@@ -12,7 +12,7 @@
                         <input class="id-box" type="text" name="id" [value]="this.dataService.edit? this.dataService.temp[this.dataService.index].id : ''" #ma>
                         <div class="checkbox">
                             <div class="custom-radio">
-                                <input id="radio" type="radio" value="chinhanh" name="checkform" class="radioLeft">
+                                <input id="radio" type="radio" value="chinhanh" name="checkform" class="radioLeft" [(ngModel)]="this.dataService.radio">
                             </div>
                             <span for="chinhanh">Chi nhánh</span>
                         </div>
@@ -23,7 +23,7 @@
                         <input class="name-box" type="text" name="name" [value]="this.dataService.edit? this.dataService.temp[this.dataService.index].name : ''" #ten>
                         <div class="checkbox">
                             <div class="custom-radio">
-                                <input id="radio" type="radio" name="checkform" value="bophan" checked="checked" class="radioRight">
+                                <input id="radio" type="radio" name="checkform" value="bophan" class="radioRight" [(ngModel)]="this.dataService.radio">
                             </div>
                             <span for="bophan">Bộ phận</span>
                         </div>
@@ -58,8 +58,8 @@
 
         <div class="footer-container">
             <div class="footer">
-                <button class="btn-cancel" (click)="this.dataService.showAddForm = false;  refreshData();"><i class="bi bi-x-circle"></i> Đóng</button>
-                <button class="btn-save" (click)="save(ma.value, ten.value, mota.value, note.value, serial.value);  refreshData();"><i class="bi bi-file-earmark-check"></i> Lưu</button>
+                <button class="btn-cancel" (click)="this.dataService.showAddForm = false; refreshData();"><i class="bi bi-x-circle"></i> Đóng</button>
+                <button class="btn-save" (click)="save(ma.value, ten.value, mota.value, note.value, serial.value, this.dataService.radio);"><i class="bi bi-file-earmark-check"></i> Lưu</button>
             </div>
         </div>
     </div>
@@ -68,8 +68,8 @@
     <div id="removeConfirm" class="popup">
         <span id="label">Bạn chắc chắn muốn xóa "<b>{{ this.dataService.selectedName }}</b>" ?</span>
         <div id="actionGroup">
-            <button id="confirm" (click)="remove(); refreshData();">Xác nhận</button>
-            <button id="cancel" (click)="this.dataService.showRemoveConfirm = false;  refreshData();">Hủy</button>
+            <button id="confirm" (click)="remove();">Xác nhận</button>
+            <button id="cancel" (click)="this.dataService.showRemoveConfirm = false; refreshData();">Hủy</button>
         </div>
     </div>
 </div>
