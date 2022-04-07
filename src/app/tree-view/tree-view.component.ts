@@ -1,4 +1,3 @@
-import { DialogComponent } from '../dialog/dialog.component';
 import { DataService } from './../data.service';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -6,6 +5,7 @@ interface parentObject {
   id: string;
   name: string;
   note: string;
+  radio: string;
   serial: string;
   description: string;
   child: parentObject[];
@@ -39,24 +39,27 @@ export class TreeViewComponent implements OnInit {
       }
     }
 
-    showAddForm(boolean: boolean) {
-      this.dataService.showAddForm = true;
-      this.dataService.edit = boolean;
+    showAddForm(edit: boolean, addForm: boolean) {
+      this.dataService.showAddForm = addForm;
+      this.dataService.edit = edit;
 
       if (this.dataService.addRoot) {
         this.getListData(this.dataService.parent[0].child, this.dataService.parent.map(item => item.name));
+      } else {
+        this.getListData(this.dataService.parent[0].child, this.rightdata.map(item => item.name));
       }
     }
 
-    select(index: number) {
+    select(index: number, edit: boolean, addForm: boolean) {
       this.dataService.index = index;
       this.dataService.selectedName = this.rightdata[index].name;
+      this.dataService.radio = this.rightdata[index].radio;
 
       this.dataService.temp = this.rightdata;
       this.dataService.addRoot = false;
 
       this.dataService.parentName = this.parentName;
-      this.getListData(this.dataService.parent[0].child, this.rightdata.map(item => item.name));
+      this.showAddForm(edit, addForm);
     }
     
     add(data: parentObject) {
@@ -64,7 +67,7 @@ export class TreeViewComponent implements OnInit {
         this.rightdata[this.dataService.index].child.push(data);
       }
       else {
-        this.rightdata[0].child.push(data)
+        this.dataService.parent[0].child.push(data)
       }
     }
     

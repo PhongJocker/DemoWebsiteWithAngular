@@ -13,14 +13,14 @@
             <span>{{ item.description }}</span>
         </div>
         <div id="col" class="col" style="padding-right: 4px; display: flex; flex-direction: row; align-items: center; justify-content: flex-end;">
-            <button id="add" (click)="select(rightdata.indexOf(item)); showAddForm(false);">
+            <button id="add" (click)="select(rightdata.indexOf(item), false, true);">
                 <i class="bi bi-plus"></i>
             </button>
             <div *ngIf="item.serial != '0'">
-                <button id="edit" (click)="select(rightdata.indexOf(item)); showAddForm(true);">
+                <button id="edit" (click)="select(rightdata.indexOf(item), true, true);">
                     <i class="bi bi-pencil-fill"></i>
                 </button>
-                <button id="remove" (click)="select(rightdata.indexOf(item)); this.dataService.showRemoveConfirm = true">
+                <button id="remove" (click)="select(rightdata.indexOf(item), false, false); this.dataService.showRemoveConfirm = true">
                     <i class="bi bi-trash-fill"></i>
                 </button>
             </div>
