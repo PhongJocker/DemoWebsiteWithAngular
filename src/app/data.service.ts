@@ -21,6 +21,7 @@ export class DataService {
 
   showAddForm: boolean = false;
   showRemoveConfirm: boolean = false;
+  onSelected: boolean = false;
   
   index: number;
   selectedName: string;
@@ -128,6 +129,7 @@ export class DataService {
         }
       ]
     }];
+
   listData: string[] = [];
 
   constructor() { }
