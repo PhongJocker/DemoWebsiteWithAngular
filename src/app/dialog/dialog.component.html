@@ -1,7 +1,8 @@
 <div id="popup-container" *ngIf="this.dataService.showAddForm">
     <div class="popup">
         <div class="title">
-            <span id="popup-title">Thêm mới bộ phận</span>
+            <span id="popup-title"*ngIf="!this.dataService.edit" >Thêm mới bộ phận</span>
+            <span id="popup-title" *ngIf="this.dataService.edit">Thay đổi bộ phận</span>
         </div>
 
         <div class="body-container">
@@ -33,9 +34,9 @@
                 <div class="button-container">
                     <span>Thuộc chi nhánh / Bộ phận cha</span>
     
-                    <select id="dropdown-menu">
+                    <select id="dropdown-menu" (change)="onSelected($event)">
                         <option hidden="">Chi nhánh / bộ phận cha</option>
-                        <option [value]="name" *ngFor="let name of this.dataService.listData" [selected]="name == this.dataService.selectedName">{{ name }}</option>
+                        <option [value]="name" *ngFor="let name of this.dataService.listData" [selected]="this.dataService.edit? name == this.dataService.parentName: name == this.dataService.selectedName" [hidden]="this.dataService.edit? name == this.dataService.selectedName: false" #dropList>{{ name }}</option>
                     </select>
                 </div>
     
