@@ -17,6 +17,7 @@ interface parentObject {
 export class DataService {
   addRoot: boolean = false;
   edit: boolean = false;
+  localData = localStorage.getItem('data') == null ? null : localStorage.getItem('data');
 
   showAddForm: boolean = false;
   showRemoveConfirm: boolean = false;
@@ -27,7 +28,7 @@ export class DataService {
   radio: string = 'bophan';
 
   temp: parentObject[];
-  parent: parentObject[] = [
+  parent: parentObject[] = this.localData != null? JSON.parse(this.localData): [
     {
       name: "Hệ thống tư vấn quản lý trực tuyến OOC",
       id: "Mã",
