@@ -46,7 +46,6 @@ export class TreeViewComponent implements OnInit {
             this.rightdata.splice(this.dataService.index, 1);
           }
           i.child.push(insertData);
-          this.dataService.listData.splice(0, this.dataService.listData.length);
           return;
         } else {
           if (i.child.length > 0) {
@@ -55,10 +54,11 @@ export class TreeViewComponent implements OnInit {
         }
       }
     }
-
+    
     showAddForm(edit: boolean, addForm: boolean) {
       this.dataService.showAddForm = addForm;
       this.dataService.edit = edit;
+      this.dataService.listData.splice(0, this.dataService.listData.length);
 
       if (this.dataService.addRoot) {
         this.dataService.listData.push(this.dataService.parent[0].name);
@@ -76,21 +76,20 @@ export class TreeViewComponent implements OnInit {
 
       this.dataService.temp = this.rightdata;
       this.dataService.addRoot = false;
+      this.dataService.onSelected = false;
 
       this.dataService.parentName = this.parentName;
       this.showAddForm(edit, addForm);
     }
     
     add(data: parentObject) {
-      if (this.dataService.selectedName != '') {
+      if (this.dataService.onSelected) {
         this.updateData(this.dataService.parent, this.dataService.selectedName, data);
-        
       } else {
         if (this.dataService.addRoot) {
-          this.dataService.parent[0].child.push(data);
-        
+            this.dataService.parent[0].child.push(data);
         } else {
-          this.rightdata[this.dataService.index].child.push(data);
+          this.rightdata[this.dataService.index].child.push(data); 
         }
       }
     }

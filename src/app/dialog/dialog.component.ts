@@ -20,7 +20,6 @@ interface parentObject {
 export class DialogComponent implements OnInit {
 
   public treeView = new TreeViewComponent(this.dataService);
-  public selectedValue: string;
 
   constructor(public dataService: DataService) { }
   
@@ -36,21 +35,22 @@ export class DialogComponent implements OnInit {
   }
 
   onSelected(event: any) {
-    this.selectedValue = event.target.value;
+    this.dataService.selectedName = event.target.value;
+    this.dataService.onSelected = true;
   }
   
   save(id: string, name: string, description: string, note: string, serial: string, radio: string) {
     if (id == '' || name == '' || description == '' || radio == '') {
       alert('Vui lòng không bỏ trống !');
       return;
+    } else if (this.dataService.listData.includes(name)) {
+      alert('Tên này đã tồn tại !');
+      return;
     } else {
       var data: parentObject = {id: id, name: name, radio: radio, description: description, note: note, serial: serial, child: []};
       
       this.dataService.showAddForm = false;
       this.treeView.rightdata = this.dataService.temp;
-      if (this.dataService.selectedName != this.dataService.parentName) {
-        this.dataService.selectedName = this.selectedValue;
-      }
       
       if (this.dataService.edit) {
         this.treeView.edit(data)
