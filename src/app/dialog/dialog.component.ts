@@ -20,6 +20,7 @@ interface parentObject {
 export class DialogComponent implements OnInit {
 
   public treeView = new TreeViewComponent(this.dataService);
+  public selectedValue: string;
 
   constructor(public dataService: DataService) { }
   
@@ -28,6 +29,14 @@ export class DialogComponent implements OnInit {
 
   refreshData () {
     this.dataService.listData.splice(0, this.dataService.listData.length);
+    if (localStorage.key(0) == 'data') {
+      localStorage.removeItem('data');
+    }
+    localStorage.setItem('data', JSON.stringify(this.dataService.parent));
+  }
+
+  onSelected(event: any) {
+    this.selectedValue = event.target.value;
   }
   
   save(id: string, name: string, description: string, note: string, serial: string, radio: string) {
@@ -39,6 +48,9 @@ export class DialogComponent implements OnInit {
       
       this.dataService.showAddForm = false;
       this.treeView.rightdata = this.dataService.temp;
+      if (this.dataService.selectedName != this.dataService.parentName) {
+        this.dataService.selectedName = this.selectedValue;
+      }
       
       if (this.dataService.edit) {
         this.treeView.edit(data)
