@@ -43,7 +43,7 @@ export class DialogComponent implements OnInit {
     if (id == '' || name == '' || description == '' || radio == '') {
       alert('Vui lòng không bỏ trống !');
       return;
-    } else if (this.dataService.listData.includes(name)) {
+    } else if (this.dataService.listData.includes(name) && this.dataService.edit == false) {
       alert('Tên này đã tồn tại !');
       return;
     } else {
