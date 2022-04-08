@@ -16,7 +16,7 @@
             <button id="add" (click)="select(rightdata.indexOf(item), false, true);">
                 <i class="bi bi-plus"></i>
             </button>
-            <div *ngIf="item.serial != '0'">
+            <div *ngIf="item.name != this.dataService.parent[0].name">
                 <button id="edit" (click)="select(rightdata.indexOf(item), true, true);">
                     <i class="bi bi-pencil-fill"></i>
                 </button>
