@@ -30,10 +30,25 @@ export class TreeViewComponent implements OnInit {
     getListData (data: parentObject[], selected: string[]) {
       for (let i of data) {
         this.dataService.listData.push(i.name);
-        
+
         if (selected.includes(i.name) == false) {
           if (i.child.length > 0) {
             this.getListData(i.child, selected);
+          }
+        }
+      }
+    }
+    
+    updateData (data: parentObject[], selected: string, insertData: parentObject) {
+      for (let i of data) {
+        if (i.name == selected) {
+          i.child.push(insertData);
+          this.rightdata.splice(this.dataService.index, 1);
+          this.dataService.listData.splice(0, this.dataService.listData.length);
+          return;
+        } else {
+          if (i.child.length > 0) {
+            this.updateData(i.child, selected, insertData);
           }
         }
       }
@@ -80,7 +95,12 @@ export class TreeViewComponent implements OnInit {
           this.rightdata[this.dataService.index][key as keyof parentObject] = value;
         }
       }
+      
       this.dataService.listData = [];
+      
+      if (this.dataService.selectedName != this.dataService.parentName) {
+        this.updateData(this.dataService.parent, this.dataService.selectedName, this.rightdata[this.dataService.index]);
+      }
     }
     
     remove(index: number) {
