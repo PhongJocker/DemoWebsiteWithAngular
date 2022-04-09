@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 
 interface parentObject {
-  id: string;
+  id: number;
+  code: string;
   name: string;
   note: string;
   radio: string;
   serial: string;
   description: string;
   child: parentObject[];
+}
+
+interface listObject {
+  id: number;
+  name: string;
 }
 
 @Injectable({
@@ -24,49 +30,58 @@ export class DataService {
   onSelected: boolean = false;
   
   index: number;
+  counter: number = 9;
+  selectedID: number;
   selectedName: string;
-  parentName: string;
+  parentID: number;
   radio: string = 'bophan';
 
   temp: parentObject[];
+  listData: listObject[] = [];
+  
   parent: parentObject[] = this.localData != null? JSON.parse(this.localData): [
     {
+      id: 0,
       name: "Hệ thống tư vấn quản lý trực tuyến OOC",
-      id: "Mã",
+      code: "Mã",
       radio: "chinhanh",
       note: '',
       serial: "0",
       description: "Mô tả chức năng - nhiệm vụ",
       child: [
         {
+          id: 1,
           name: "Giám đốc",
-          id: "BGD-1",
+          code: "BGD-1",
           radio: "bophan",
           note: '',
           serial: "1",
           description: "Điều hành hoạt động doanh nghiệp. Trực tiếp phụ trách doanh nghiệp",
           child: [
             {
+              id: 2,
               name: "Phó giám đốc phụ trách kinh doanh",
-              id: "BGD-2",
+              code: "BGD-2",
               radio: "bophan",
               note: '',
               serial: "1",
               description: "Điều hành khối kinh doanh",
               child: [
                 {
+                  id: 3,
                   name: "Phòng phát triển thị trường",
-                  id: "PTTT",
+                  code: "PTTT",
                   radio: "bophan",
                   note: '',
                   serial: "1",
                   description: "Marketing, chính sách giá cước, xúc tiền thương mại, quảng cáo, quản lý thương mại",
                   child: []
                 },
-                
+
                 {
+                  id: 4,
                   name: "Phòng kinh doanh",
-                  id: "KD",
+                  code: "KD",
                   radio: "bophan",
                   note: '',
                   serial: "1",
@@ -77,8 +92,9 @@ export class DataService {
             },
   
             {
+              id: 5,
               name: "Phòng tài chính kế toán",
-              id: "TCKT",
+              code: "TCKT",
               radio: "bophan",
               note: '',
               serial: "1",
@@ -87,8 +103,9 @@ export class DataService {
             },
   
             {
+              id: 6,
               name: "Phòng quản trị nguồn nhân lực",
-              id: "QTNNL",
+              code: "QTNNL",
               radio: "bophan",
               note: '',
               serial: "1",
@@ -97,8 +114,9 @@ export class DataService {
             },
   
             {
+              id: 7,
               name: "Phòng R&D",
-              id: "RD",
+              code: "RD",
               radio: "bophan",
               note: '',
               serial: "1",
@@ -107,8 +125,9 @@ export class DataService {
             },
   
             {
+              id: 8,
               name: "Phòng hành chính tổng hợp",
-              id: "HC",
+              code: "HC",
               radio: "bophan",
               note: '',
               serial: "1",
@@ -117,8 +136,9 @@ export class DataService {
             },
   
             {
+              id: 9,
               name: "Phòng kỹ thuật",
-              id: "BGD-1-7",
+              code: "BGD-1-7",
               radio: "bophan",
               note: '',
               serial: "1",
@@ -129,8 +149,6 @@ export class DataService {
         }
       ]
     }];
-
-  listData: string[] = [];
 
   constructor() { }
 }
