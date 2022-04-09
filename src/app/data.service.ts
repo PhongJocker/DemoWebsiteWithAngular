@@ -17,7 +17,7 @@ interface parentObject {
 export class DataService {
   addRoot: boolean = false;
   edit: boolean = false;
-  localData = localStorage.getItem('data') == null ? null : localStorage.getItem('data');
+  localData = localStorage.getItem('PhongDemoData') == null ? null : localStorage.getItem('PhongDemoData');
 
   showAddForm: boolean = false;
   showRemoveConfirm: boolean = false;
