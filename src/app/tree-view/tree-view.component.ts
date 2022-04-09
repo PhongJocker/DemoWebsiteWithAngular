@@ -31,11 +31,12 @@ export class TreeViewComponent implements OnInit {
       for (let i of data) {
         this.dataService.listData.push(i.name);
       }
-      
+        
       if (this.dataService.listData.includes(this.dataService.parentName) == false) {
         for (let i of data) {
           this.getListData(i.child);
         }
+        
       } else {
         for (let i of data) {
           for (let j of i.child) {
@@ -69,8 +70,14 @@ export class TreeViewComponent implements OnInit {
       if (this.dataService.addRoot) {
         this.dataService.parentName = '';
         this.dataService.selectedName = this.dataService.parent[0].name;
+        this.getListData(this.dataService.parent);
+      } else {
+        if (this.dataService.selectedName == this.dataService.parent[0].name) {
+          this.dataService.listData.push(this.dataService.parent[0].name);
+        } else {
+          this.getListData(this.dataService.parent);
+        }
       }
-      this.getListData(this.dataService.parent);
     }
 
     select(index: number, edit: boolean, addForm: boolean) {
