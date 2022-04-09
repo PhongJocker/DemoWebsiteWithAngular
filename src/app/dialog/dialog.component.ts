@@ -28,10 +28,10 @@ export class DialogComponent implements OnInit {
 
   refreshData () {
     this.dataService.listData.splice(0, this.dataService.listData.length);
-    if (localStorage.key(0) == 'data') {
-      localStorage.removeItem('data');
+    if (localStorage.key(0) == 'PhongDemoData') {
+      localStorage.removeItem('PhongDemoData');
     }
-    localStorage.setItem('data', JSON.stringify(this.dataService.parent));
+    localStorage.setItem('PhongDemoData', JSON.stringify(this.dataService.parent));
   }
 
   onSelected(event: any) {

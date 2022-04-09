@@ -27,13 +27,19 @@ export class TreeViewComponent implements OnInit {
     ngOnInit(): void {
     }
     
-    getListData (data: parentObject[], selected: string[]) {
+    getListData (data: parentObject[]) {
       for (let i of data) {
         this.dataService.listData.push(i.name);
-
-        if (selected.includes(i.name) == false) {
-          if (i.child.length > 0) {
-            this.getListData(i.child, selected);
+      }
+      
+      if (this.dataService.listData.includes(this.dataService.parentName) == false) {
+        for (let i of data) {
+          this.getListData(i.child);
+        }
+      } else {
+        for (let i of data) {
+          for (let j of i.child) {
+            this.dataService.listData.push(j.name);
           }
         }
       }
@@ -59,14 +65,12 @@ export class TreeViewComponent implements OnInit {
       this.dataService.showAddForm = addForm;
       this.dataService.edit = edit;
       this.dataService.listData.splice(0, this.dataService.listData.length);
-
+      
       if (this.dataService.addRoot) {
-        this.dataService.listData.push(this.dataService.parent[0].name);
+        this.dataService.parentName = '';
         this.dataService.selectedName = this.dataService.parent[0].name;
-        this.getListData(this.dataService.parent[0].child, this.dataService.parent.map(item => item.name));
-      } else {
-        this.getListData(this.dataService.parent, this.rightdata.map(item => item.name));
       }
+      this.getListData(this.dataService.parent);
     }
 
     select(index: number, edit: boolean, addForm: boolean) {
