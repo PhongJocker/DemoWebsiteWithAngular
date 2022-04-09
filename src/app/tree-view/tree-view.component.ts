@@ -2,7 +2,8 @@ import { DataService } from './../data.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 interface parentObject {
-  id: string;
+  id: number;
+  code: string;
   name: string;
   note: string;
   radio: string;
@@ -19,7 +20,7 @@ interface parentObject {
 
 export class TreeViewComponent implements OnInit {
   @Input() rightdata: parentObject[] = this.dataService.parent;
-  @Input() parentName: string;
+  @Input() parentID: number;
     
  
     constructor(public dataService: DataService) { }
@@ -29,10 +30,10 @@ export class TreeViewComponent implements OnInit {
     
     getListData (data: parentObject[]) {
       for (let i of data) {
-        this.dataService.listData.push(i.name);
+        this.dataService.listData.push({id: i.id, name: i.name});
       }
         
-      if (this.dataService.listData.includes(this.dataService.parentName) == false) {
+      if (this.dataService.listData.map((x) => x.id).includes(this.dataService.parentID) == false) {
         for (let i of data) {
           this.getListData(i.child);
         }
@@ -40,17 +41,17 @@ export class TreeViewComponent implements OnInit {
       } else {
         for (let i of data) {
           for (let j of i.child) {
-            this.dataService.listData.push(j.name);
+            this.dataService.listData.push({id: j.id, name: j.name});
           }
         }
       }
     }
     
-    updateData (data: parentObject[], selected: string, insertData: parentObject) {
+    updateData (data: parentObject[], selected: number, insertData: parentObject) {
       for (let i of data) {
-        if (i.name == selected) {
+        if (i.id == selected) {
           if (this.dataService.edit) {
-            this.rightdata.splice(this.dataService.index, 1);
+            this.remove(this.dataService.index);
           }
           i.child.push(insertData);
           return;
@@ -68,20 +69,14 @@ export class TreeViewComponent implements OnInit {
       this.dataService.listData.splice(0, this.dataService.listData.length);
       
       if (this.dataService.addRoot) {
-        this.dataService.parentName = '';
-        this.dataService.selectedName = this.dataService.parent[0].name;
-        this.getListData(this.dataService.parent);
-      } else {
-        if (this.dataService.selectedName == this.dataService.parent[0].name) {
-          this.dataService.listData.push(this.dataService.parent[0].name);
-        } else {
-          this.getListData(this.dataService.parent);
-        }
+        this.dataService.selectedID = this.dataService.parent[0].id;
       }
+      this.getListData(this.dataService.parent);
     }
 
     select(index: number, edit: boolean, addForm: boolean) {
       this.dataService.index = index;
+      this.dataService.selectedID = this.rightdata[index].id;
       this.dataService.selectedName = this.rightdata[index].name;
       this.dataService.radio = this.rightdata[index].radio;
 
@@ -89,16 +84,16 @@ export class TreeViewComponent implements OnInit {
       this.dataService.addRoot = false;
       this.dataService.onSelected = false;
 
-      this.dataService.parentName = this.parentName;
+      this.dataService.parentID = this.parentID;
       this.showAddForm(edit, addForm);
     }
     
     add(data: parentObject) {
       if (this.dataService.onSelected) {
-        this.updateData(this.dataService.parent, this.dataService.selectedName, data);
+        this.updateData(this.dataService.parent, this.dataService.selectedID, data);
       } else {
         if (this.dataService.addRoot) {
-            this.dataService.parent[0].child.push(data);
+          this.dataService.parent[0].child.push(data);
         } else {
           this.rightdata[this.dataService.index].child.push(data); 
         }
@@ -116,15 +111,15 @@ export class TreeViewComponent implements OnInit {
       
       this.dataService.listData = [];
       
-      if (this.dataService.selectedName != this.dataService.parentName) {
-        this.updateData(this.dataService.parent, this.dataService.selectedName, this.rightdata[this.dataService.index]);
+      if (this.dataService.selectedID != this.dataService.parentID) {
+        this.updateData(this.dataService.parent, this.dataService.selectedID, this.rightdata[this.dataService.index]);
       }
     }
     
     remove(index: number) {
       this.dataService.showRemoveConfirm = false;
       this.rightdata.splice(index, 1);
-      this.dataService.listData = [];
+      this.dataService.listData.splice(0, this.dataService.listData.length);
     }
   }
   

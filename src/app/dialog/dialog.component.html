@@ -10,7 +10,7 @@
                 <div class="input-container">
                     <div class="input-box-left">
                         <span>Mã</span>
-                        <input class="id-box" type="text" name="id" [value]="this.dataService.edit? this.dataService.temp[this.dataService.index].id : ''" #ma>
+                        <input class="id-box" type="text" name="id" [value]="this.dataService.edit? this.dataService.temp[this.dataService.index].code : ''" #ma>
                         <div class="checkbox">
                             <div class="custom-radio">
                                 <input id="radio" type="radio" value="chinhanh" name="checkform" class="radioLeft" [(ngModel)]="this.dataService.radio">
@@ -36,7 +36,7 @@
     
                     <select id="dropdown-menu" (change)="onSelected($event)">
                         <option hidden="">Chi nhánh / bộ phận cha</option>
-                        <option [value]="name" *ngFor="let name of this.dataService.listData" [selected]="this.dataService.edit? name == this.dataService.parentName: name == this.dataService.selectedName" [hidden]="this.dataService.edit? name == this.dataService.selectedName: false" #dropList>{{ name }}</option>
+                        <option [value]="name.id" *ngFor="let name of this.dataService.listData" [selected]="this.dataService.edit? name.id == this.dataService.parentID: name.id == this.dataService.selectedID" [hidden]="this.dataService.edit? name.id == this.dataService.selectedID: false" #dropList>{{ name.name }}</option>
                     </select>
                 </div>
     

@@ -3,7 +3,8 @@ import { TreeViewComponent } from '../tree-view/tree-view.component';
 import { Component, OnInit } from '@angular/core';
 
 interface parentObject {
-  id: string;
+  id: number;
+  code: string;
   name: string;
   note: string;
   radio: string;
@@ -35,28 +36,24 @@ export class DialogComponent implements OnInit {
   }
 
   onSelected(event: any) {
-    this.dataService.selectedName = event.target.value;
+    this.dataService.selectedID = event.target.value;
     this.dataService.onSelected = true;
   }
   
-  save(id: string, name: string, description: string, note: string, serial: string, radio: string) {
-    if (id == '' || name == '' || description == '' || radio == '') {
+  save(code: string, name: string, description: string, note: string, serial: string, radio: string) {
+    if (code == '' || name == '' || description == '' || radio == '') {
       alert('Vui lòng không bỏ trống !');
       return;
-    } else if (this.dataService.listData.includes(name) && this.dataService.edit == false) {
-      alert('Tên này đã tồn tại !');
-      return;
     } else {
-      var data: parentObject = {id: id, name: name, radio: radio, description: description, note: note, serial: serial, child: []};
-      
       this.dataService.showAddForm = false;
       this.treeView.rightdata = this.dataService.temp;
       
       if (this.dataService.edit) {
-        this.treeView.edit(data)
+        this.treeView.edit({id: this.dataService.temp[this.dataService.index].id ,code: code, name: name, radio: radio, description: description, note: note, serial: serial, child: []})
         this.dataService.edit = false;
       } else {
-        this.treeView.add(data);
+        this.dataService.counter += 1;
+        this.treeView.add({id: this.dataService.counter ,code: code, name: name, radio: radio, description: description, note: note, serial: serial, child: []});
       }
     }
     this.refreshData();

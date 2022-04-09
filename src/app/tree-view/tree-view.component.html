@@ -4,10 +4,10 @@
         <div class="col" style="display: flex; flex-direction: row; column-gap: 5px;">
             <i class="bi bi-chevron-up" *ngIf="item.child.length"></i>
             <i class="bi bi-diagram-3-fill" style="color: rgb(6, 130, 247);" *ngIf="item.serial != '0'"></i>
-            <span>{{ item.name }}</span>
+            <span>{{ item.id }} {{ item.name }}</span>
         </div>
         <div class="col">
-            <span>{{ item.id }}</span>
+            <span>{{ item.code }}</span>
         </div>
         <div class="col">
             <span>{{ item.description }}</span>
@@ -28,5 +28,5 @@
     </div>
     <div id="toolTip">{{ item.name }}</div>
 
-    <app-tree-view *ngIf="item.child.length" [rightdata]="item.child" [parentName]="item.name" class="list"></app-tree-view>
+    <app-tree-view *ngIf="item.child.length" [rightdata]="item.child" [parentID]="item.id" class="list"></app-tree-view>
 </div>
